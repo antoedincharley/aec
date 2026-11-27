@@ -15,7 +15,19 @@ I build data platforms for retail analytics — from ingestion and warehouse ETL
 | **SQL Server** | Administration, SSIS / SSISDB, SQL Agent, Change Tracking, columnstore indexes, Database Mail |
 | **Data Warehousing** | Incremental loads, hash-based change detection, watermarking, ERP-to-analytics migrations |
 
-### 📂 Portfolio
+### 📖 Case studies
+
+Real problems and how I solved them:
+
+- [Incremental ETL framework for Fabric Warehouse](case-studies/01-fabric-etl-framework.md)
+- [Composite semantic model: Direct Lake + on-prem DirectQuery](case-studies/02-composite-semantic-model.md)
+- [Recovering from a Fabric capacity failure](case-studies/03-fabric-capacity-incident.md)
+- [Diagnosing Fabric Warehouse storage bloat](case-studies/04-fabric-storage-bloat.md)
+- [Release notes app on Fabric](case-studies/05-release-notes-app.md)
+- [Fixing SSISDB log growth](case-studies/06-ssisdb-log-cleanup.md)
+- [Moving reporting off SAP to an analytics hub](case-studies/07-sap-decommissioning.md)
+
+### 📂 Code samples
 
 - **[fabric-warehouse-etl-patterns](https://github.com/antoedincharley/aec/tree/main/fabric-warehouse-etl-patterns)** — Stored procedure templates for Fabric Warehouse: Full / Recreate / Upsert modes, SHA2-256 row hashing, watermarking
 - **[powerbi-dax-patterns](https://github.com/antoedincharley/aec/tree/main/powerbi-dax-patterns)** — Practical DAX: virtual relationships, role-playing dates, dynamic RLS, conditional formatting

@@ -11,8 +11,11 @@ I turn business data into decisions. I design and build the full data platform m
 | Capability | In practice |
 |---|---|
 | **Data architecture** | Design lakehouse and warehouse platforms on Microsoft Fabric and Azure (ADLS, Data Factory, Synapse) |
+| **Data modelling** | Dimensional and star-schema models for warehouses and Power BI, at the right grain for the questions asked |
+| **Data governance** | Ownership, access control, data quality and lineage, so the numbers are trusted and secure |
 | **Data engineering** | Build incremental, re-runnable ETL from ERP and SQL Server sources, with change detection and monitoring |
 | **Business intelligence** | Model data for analysis and build Power BI reports leaders use to run the business |
+| **Automation** | Power Automate flows that connect business processes, alerts and approvals to the data platform |
 | **Database administration** | Keep SQL Server estates healthy: SSIS, SQL Agent, Change Tracking, performance and storage |
 | **Data analysis** | Investigate the numbers, find the cause behind a trend and explain it in business terms |
 | **Platform migration** | Move reporting off legacy ERP to a central analytics platform without disrupting the business |
@@ -58,7 +61,7 @@ Incremental loading with hash-based change detection and watermarks. Moving repo
 
 ## Tools
 
-Microsoft Fabric, Power BI, SQL Server, T-SQL, DAX, Power Query, PySpark, PowerShell, SSIS, Azure Logic Apps
+Microsoft Fabric, Power BI, SQL Server, T-SQL, DAX, Power Query, PySpark, PowerShell, SSIS, Power Automate, Azure Logic Apps, Azure Data Factory, Azure Synapse, ADLS
 
 ## Contact
 

@@ -1,0 +1,10 @@
+// Base measure uses the active relationship (order date)
+Net Sales =
+SUM ( Fact_Sales[NetAmount] )
+
+// Same measure by ship date, using the inactive relationship
+Net Sales by Ship Date =
+CALCULATE (
+    [Net Sales],
+    USERELATIONSHIP ( Fact_Sales[ShipDateKey], Dim_Date[DateKey] )
+)

@@ -1,0 +1,19 @@
+// Dynamic RLS
+// Security_UserStore (UserEmail, StoreKey) lists the stores each user may see.
+// Create a role in Power BI Desktop (Modeling > Manage roles)
+// and apply this filter expression on Dim_Store:
+
+[StoreKey]
+    IN CALCULATETABLE (
+        VALUES ( Security_UserStore[StoreKey] ),
+        Security_UserStore[UserEmail] = USERPRINCIPALNAME ()
+    )
+
+// Optional: "see all" users listed with StoreKey = -1
+// [StoreKey] IN CALCULATETABLE ( VALUES ( Security_UserStore[StoreKey] ),
+//                                Security_UserStore[UserEmail] = USERPRINCIPALNAME () )
+// || -1 IN CALCULATETABLE ( VALUES ( Security_UserStore[StoreKey] ),
+//                           Security_UserStore[UserEmail] = USERPRINCIPALNAME () )
+
+// Keep Security_UserStore unrelated to the model, or related one-way to
+// Dim_Store, and hide it from report view.

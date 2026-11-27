@@ -1,0 +1,19 @@
+// Requires Dim_Date marked as a date table.
+
+Sales YTD =
+TOTALYTD ( [Net Sales], Dim_Date[Date] )
+
+Sales PY =
+CALCULATE ( [Net Sales], SAMEPERIODLASTYEAR ( Dim_Date[Date] ) )
+
+Sales YoY % =
+DIVIDE ( [Net Sales] - [Sales PY], [Sales PY] )
+
+// Stop comparisons after the last date with sales
+Sales PY (to date) =
+VAR LastSale = CALCULATE ( MAX ( Fact_Sales[DateKey] ), ALL ( Dim_Date ) )
+RETURN
+    CALCULATE (
+        [Sales PY],
+        KEEPFILTERS ( Dim_Date[DateKey] <= LastSale )
+    )

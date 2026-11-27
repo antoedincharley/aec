@@ -1,0 +1,12 @@
+// Targets are stored at Store x Month grain with no relationship to the model.
+// TREATAS pushes the current Store and Month filters onto Fact_Target.
+
+Target Amount =
+CALCULATE (
+    SUM ( Fact_Target[TargetAmount] ),
+    TREATAS ( VALUES ( Dim_Store[StoreKey] ),   Fact_Target[StoreKey] ),
+    TREATAS ( VALUES ( Dim_Date[YearMonth] ),   Fact_Target[YearMonth] )
+)
+
+Sales vs Target % =
+DIVIDE ( [Net Sales] - [Target Amount], [Target Amount] )

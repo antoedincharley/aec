@@ -1,0 +1,16 @@
+// Count products that sold in the current filter context.
+// The model relationship is single-direction (Product -> Sales);
+// CROSSFILTER enables both directions for this measure only.
+
+Products Sold =
+CALCULATE (
+    DISTINCTCOUNT ( Dim_Product[ProductKey] ),
+    CROSSFILTER ( Fact_Sales[ProductKey], Dim_Product[ProductKey], BOTH )
+)
+
+// Stores that sold the selected products (filter flows Product -> Sales -> Store)
+Stores Selling =
+CALCULATE (
+    DISTINCTCOUNT ( Dim_Store[StoreKey] ),
+    CROSSFILTER ( Fact_Sales[StoreKey], Dim_Store[StoreKey], BOTH )
+)

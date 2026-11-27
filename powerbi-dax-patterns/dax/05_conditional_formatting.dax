@@ -1,0 +1,18 @@
+// Use in Format > Cell elements > Background colour > Field value
+
+Sales vs Target Colour =
+VAR v = [Sales vs Target %]
+RETURN
+    SWITCH (
+        TRUE (),
+        ISBLANK ( v ), BLANK (),
+        v >= 0,        "#1E8E3E",   // green  - on / above target
+        v >= -0.05,    "#F9AB00",   // amber  - within 5 %
+                       "#D93025"    // red    - below
+    )
+
+// Icon via Unicode (use as a measure column in the matrix)
+Trend Icon =
+VAR v = [Sales YoY %]
+RETURN
+    SWITCH ( TRUE (), ISBLANK ( v ), BLANK (), v > 0, "▲", v < 0, "▼", "▬" )

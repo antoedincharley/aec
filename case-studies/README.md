@@ -13,3 +13,4 @@ Company names, system names and data have been removed.
 | 06 | [Fixing SSISDB log growth](06-ssisdb-log-cleanup.md) | SQL Server administration |
 | 07 | [Moving reporting off SAP to an analytics hub](07-sap-decommissioning.md) | Migration · Data warehousing |
 | 08 | [Retail sales report in Power BI](08-retail-sales-report.md) | Power BI · TMDL · PBIR |
+| 09 | [Automated data monitoring and remote fixes](09-automated-data-monitoring.md) | Power Automate · Teams · Data quality |

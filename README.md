@@ -51,6 +51,7 @@ Incremental loading with hash-based change detection and watermarks. Moving repo
 | [Fixing SSISDB log growth](case-studies/06-ssisdb-log-cleanup.md) | SQL Server |
 | [Moving reporting off SAP to an analytics hub](case-studies/07-sap-decommissioning.md) | Migration |
 | [Retail sales report in Power BI](case-studies/08-retail-sales-report.md) | Power BI, TMDL, PBIR |
+| [Automated data monitoring and remote fixes](case-studies/09-automated-data-monitoring.md) | Power Automate, Teams |
 
 ## Code samples
 

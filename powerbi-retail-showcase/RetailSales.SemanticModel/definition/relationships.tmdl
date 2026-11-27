@@ -1,0 +1,16 @@
+relationship 7bd506e8-1675-40b0-927f-4862d512d1a8
+	fromColumn: Sales.OrderDate
+	toColumn: 'Date'.Date
+
+relationship 11bcbbbb-7536-4d38-9c5d-c5d2c658c061
+	fromColumn: Sales.StoreKey
+	toColumn: Store.StoreKey
+
+relationship 05d8f557-d4d5-4645-a234-7339129cea61
+	fromColumn: Sales.ProductKey
+	toColumn: Product.ProductKey
+
+relationship 4d2b1cbd-c4bf-4f7f-9c45-1a2b23737962
+	fromColumn: Sales.Channel
+	toColumn: Channel.Channel
+

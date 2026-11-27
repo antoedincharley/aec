@@ -1,0 +1,23 @@
+/// Sales channel: In-store or Online.
+table Channel
+	lineageTag: e3adbdca-c8fe-4ea1-aafe-902615330f5a
+
+	column Channel
+		dataType: string
+		lineageTag: b2204296-7de5-4166-b44f-73052d54458c
+		summarizeBy: none
+		sourceColumn: Channel
+
+		annotation SummarizationSetBy = User
+
+	partition Channel = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(Web.Contents(BaseUrl, [RelativePath = "channel.csv"]), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Typed = Table.TransformColumnTypes(Promoted, {{"Channel", type text}}, "en-US")
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table

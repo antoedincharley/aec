@@ -1,0 +1,46 @@
+/// Monthly sales target per store. No relationships: the Target measure applies filters with TREATAS.
+table 'Sales Target'
+	lineageTag: 8519a014-7411-4e49-bb5e-4922657d43b3
+	isHidden
+
+	column StoreKey
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 87b064a1-a4ab-4c30-999b-1d8cfd8c9cc4
+		summarizeBy: none
+		sourceColumn: StoreKey
+
+		annotation SummarizationSetBy = User
+
+	column YearMonth
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: b0f69e4f-5287-41c9-af88-36cc78c83a99
+		summarizeBy: none
+		sourceColumn: YearMonth
+
+		annotation SummarizationSetBy = User
+
+	column TargetAmount
+		dataType: decimal
+		isHidden
+		formatString: #,0
+		lineageTag: fe0d10f5-680c-4910-b29b-43bc7551d95b
+		summarizeBy: sum
+		sourceColumn: TargetAmount
+
+		annotation SummarizationSetBy = User
+
+	partition 'Sales Target' = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(Web.Contents(BaseUrl, [RelativePath = "target.csv"]), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Typed = Table.TransformColumnTypes(Promoted, {{"StoreKey", Int64.Type}, {"YearMonth", Int64.Type}, {"TargetAmount", Currency.Type}}, "en-US")
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table

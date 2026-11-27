@@ -1,0 +1,59 @@
+/// One row per store.
+table Store
+	lineageTag: 12d4b5e3-6075-428b-b2a0-e03b4c5622e1
+
+	column StoreKey
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 562e5dfa-de02-4392-ae6e-6a425b36aca4
+		summarizeBy: none
+		sourceColumn: StoreKey
+
+		annotation SummarizationSetBy = User
+
+	column Store
+		dataType: string
+		lineageTag: 8bbdcd3d-9def-49b3-8461-6b8a75af6043
+		summarizeBy: none
+		sourceColumn: Store
+
+		annotation SummarizationSetBy = User
+
+	column City
+		dataType: string
+		dataCategory: City
+		lineageTag: f8c5c56e-eefd-47ef-938e-943748174648
+		summarizeBy: none
+		sourceColumn: City
+
+		annotation SummarizationSetBy = User
+
+	column Region
+		dataType: string
+		dataCategory: StateOrProvince
+		lineageTag: 4079fef7-001b-45d6-8e07-04d0cd50fbd1
+		summarizeBy: none
+		sourceColumn: Region
+
+		annotation SummarizationSetBy = User
+
+	column Format
+		dataType: string
+		lineageTag: b4b108c9-946b-4274-b307-fd31b182174a
+		summarizeBy: none
+		sourceColumn: Format
+
+		annotation SummarizationSetBy = User
+
+	partition Store = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(Web.Contents(BaseUrl, [RelativePath = "store.csv"]), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Typed = Table.TransformColumnTypes(Promoted, {{"StoreKey", Int64.Type}, {"Store", type text}, {"City", type text}, {"Region", type text}, {"Format", type text}}, "en-US")
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table

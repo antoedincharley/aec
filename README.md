@@ -18,6 +18,10 @@ Administration of production instances: SSIS and SSISDB, SQL Agent, Change Track
 **Data warehousing and migration**
 Incremental loading with hash-based change detection and watermarks. Moving reporting off SAP to a central analytics platform with Dynamics NAV / Business Central sources.
 
+## Live report
+
+[Retail sales report](powerbi-retail-showcase): interactive Power BI report on sample data, built as a Power BI Project (TMDL + PBIR).
+
 ## Case studies
 
 | | |
@@ -29,9 +33,11 @@ Incremental loading with hash-based change detection and watermarks. Moving repo
 | [Release notes app on Fabric](case-studies/05-release-notes-app.md) | Dataflow Gen2, Power BI |
 | [Fixing SSISDB log growth](case-studies/06-ssisdb-log-cleanup.md) | SQL Server |
 | [Moving reporting off SAP to an analytics hub](case-studies/07-sap-decommissioning.md) | Migration |
+| [Retail sales report in Power BI](case-studies/08-retail-sales-report.md) | Power BI, TMDL, PBIR |
 
 ## Code samples
 
+- [powerbi-retail-showcase](powerbi-retail-showcase) – full Power BI project: semantic model, report, data and generator
 - [fabric-warehouse-etl-patterns](fabric-warehouse-etl-patterns) – load procedure template with Full, Recreate and Upsert modes, SHA2-256 row hashing and watermarking
 - [powerbi-dax-patterns](powerbi-dax-patterns) – virtual relationships, role-playing dates, dynamic RLS, conditional formatting, time intelligence
 - [sql-server-dba-toolkit](sql-server-dba-toolkit) – health checks for SSISDB, SQL Agent, Database Mail, Change Tracking and columnstore

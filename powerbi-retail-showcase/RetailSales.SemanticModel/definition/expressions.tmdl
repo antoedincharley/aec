@@ -1,0 +1,6 @@
+/// Folder that holds the CSV files. Change it to load the data from another location.
+expression BaseUrl = "https://raw.githubusercontent.com/antoedincharley/aec/main/powerbi-retail-showcase/data/" meta [IsParameterQuery = true, Type = "Text", IsParameterQueryRequired = true]
+	lineageTag: d24795c5-aad0-49a1-9818-3a512a3c221b
+
+	annotation PBI_ResultType = Text
+

@@ -1,0 +1,100 @@
+/// Calendar 2024-2025. Marked as the date table.
+table 'Date'
+	lineageTag: 1efa0fc9-0159-43f7-8468-b15e81d094c9
+	dataCategory: Time
+
+	column 'Date'
+		dataType: dateTime
+		isKey
+		formatString: d mmm yyyy
+		lineageTag: 23db5033-97b2-49cc-a7fe-59221b239954
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = User
+
+	column Year
+		dataType: int64
+		formatString: 0
+		lineageTag: b252a685-8ef9-4d17-b076-607448912d22
+		summarizeBy: none
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = User
+
+	column Quarter
+		dataType: string
+		lineageTag: 7a84851f-5eaf-47ab-91a0-3f83ef9877e0
+		summarizeBy: none
+		sourceColumn: Quarter
+
+		annotation SummarizationSetBy = User
+
+	column MonthNo
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 86a4b5d3-6b8f-451e-ba00-61bd91fd1e92
+		summarizeBy: none
+		sourceColumn: MonthNo
+
+		annotation SummarizationSetBy = User
+
+	column Month
+		dataType: string
+		lineageTag: 9794de31-1373-4c99-bc6a-c992bf1c781f
+		summarizeBy: none
+		sourceColumn: Month
+		sortByColumn: MonthNo
+
+		annotation SummarizationSetBy = User
+
+	column YearMonth
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 030ae364-e900-44b4-9a3c-e87f7219a32f
+		summarizeBy: none
+		sourceColumn: YearMonth
+
+		annotation SummarizationSetBy = User
+
+	column 'Year Month'
+		dataType: string
+		lineageTag: 340c472b-ea47-4dc9-8b4d-5af0f7ff5360
+		summarizeBy: none
+		sourceColumn: Year Month
+		sortByColumn: YearMonth
+
+		annotation SummarizationSetBy = User
+
+	column Weekday
+		dataType: string
+		lineageTag: 1734213c-c75e-42d3-8013-da8ced38becf
+		summarizeBy: none
+		sourceColumn: Weekday
+		sortByColumn: WeekdayNo
+
+		annotation SummarizationSetBy = User
+
+	column WeekdayNo
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 713786d6-ecd0-4473-944f-624eb192f968
+		summarizeBy: none
+		sourceColumn: WeekdayNo
+
+		annotation SummarizationSetBy = User
+
+	partition 'Date' = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(Web.Contents(BaseUrl, [RelativePath = "date.csv"]), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Typed = Table.TransformColumnTypes(Promoted, {{"Date", type date}, {"Year", Int64.Type}, {"Quarter", type text}, {"MonthNo", Int64.Type}, {"Month", type text}, {"YearMonth", Int64.Type}, {"Year Month", type text}, {"Weekday", type text}, {"WeekdayNo", Int64.Type}}, "en-US")
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table

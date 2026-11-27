@@ -12,3 +12,4 @@ Company names, system names and data have been removed.
 | 05 | [Release notes app on Fabric](05-release-notes-app.md) | Dataflow Gen2 · Lakehouse · Power BI |
 | 06 | [Fixing SSISDB log growth](06-ssisdb-log-cleanup.md) | SQL Server administration |
 | 07 | [Moving reporting off SAP to an analytics hub](07-sap-decommissioning.md) | Migration · Data warehousing |
+| 08 | [Retail sales report in Power BI](08-retail-sales-report.md) | Power BI · TMDL · PBIR |

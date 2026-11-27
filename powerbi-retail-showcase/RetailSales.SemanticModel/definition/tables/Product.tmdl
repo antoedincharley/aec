@@ -1,0 +1,77 @@
+/// One row per product.
+table Product
+	lineageTag: 62c000ef-2721-4c5b-8f05-f3f378979a38
+
+	column ProductKey
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 11015716-e7d2-42c6-86c3-4f233bc77780
+		summarizeBy: none
+		sourceColumn: ProductKey
+
+		annotation SummarizationSetBy = User
+
+	column Product
+		dataType: string
+		lineageTag: f4de623f-720c-4a38-9cc9-dd9d9056c95e
+		summarizeBy: none
+		sourceColumn: Product
+
+		annotation SummarizationSetBy = User
+
+	column Subcategory
+		dataType: string
+		lineageTag: 5a418775-0327-4cc3-93a4-33531dbee0f3
+		summarizeBy: none
+		sourceColumn: Subcategory
+
+		annotation SummarizationSetBy = User
+
+	column Category
+		dataType: string
+		lineageTag: 8844432f-1880-4577-b981-9ccfc7d2bda0
+		summarizeBy: none
+		sourceColumn: Category
+
+		annotation SummarizationSetBy = User
+
+	column Brand
+		dataType: string
+		lineageTag: 3f2c5f81-346c-40a1-9bc9-1077bbf6bfcb
+		summarizeBy: none
+		sourceColumn: Brand
+
+		annotation SummarizationSetBy = User
+
+	column ListPrice
+		dataType: decimal
+		isHidden
+		formatString: #,0.00
+		lineageTag: 942160ae-cb02-4d84-809f-58669c99c1b2
+		summarizeBy: none
+		sourceColumn: ListPrice
+
+		annotation SummarizationSetBy = User
+
+	column UnitCost
+		dataType: decimal
+		isHidden
+		formatString: #,0.00
+		lineageTag: 0ac925ca-e546-4f4a-9956-50a880064192
+		summarizeBy: none
+		sourceColumn: UnitCost
+
+		annotation SummarizationSetBy = User
+
+	partition Product = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(Web.Contents(BaseUrl, [RelativePath = "product.csv"]), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Typed = Table.TransformColumnTypes(Promoted, {{"ProductKey", Int64.Type}, {"Product", type text}, {"Subcategory", type text}, {"Category", type text}, {"Brand", type text}, {"ListPrice", Currency.Type}, {"UnitCost", Currency.Type}}, "en-US")
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table

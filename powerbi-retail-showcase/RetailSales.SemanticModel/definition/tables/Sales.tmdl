@@ -1,0 +1,207 @@
+/// One row per sales line.
+table Sales
+	lineageTag: 01cd2874-70c8-41d6-8344-db44b103f1d1
+
+	/// Sales after discounts, excluding VAT.
+	measure 'Net Sales' = SUM ( Sales[NetAmount] )
+		formatString: #,0
+		displayFolder: Sales
+		lineageTag: 5d3abde8-5ef3-4999-b6e4-6ffdb8ae3b41
+
+	/// Number of units sold.
+	measure Units = SUM ( Sales[Quantity] )
+		formatString: #,0
+		displayFolder: Sales
+		lineageTag: 604be413-d00b-49af-ae67-e022cbc405f6
+
+	/// Net sales per unit sold.
+	measure 'Avg Selling Price' = DIVIDE ( [Net Sales], [Units] )
+		formatString: #,0.00
+		displayFolder: Sales
+		lineageTag: 5be00394-79e0-4f75-8763-66684981d3bf
+
+	/// Discount given as a share of gross (list price) sales.
+	measure 'Discount %' = DIVIDE ( SUM ( Sales[DiscountAmount] ), SUM ( Sales[GrossAmount] ) )
+		formatString: 0.0%
+		displayFolder: Sales
+		lineageTag: 9d99f2b3-9a92-4470-a594-14080434a40a
+
+	/// Share of net sales placed online.
+	measure 'Online Share %' = DIVIDE ( CALCULATE ( [Net Sales], Sales[Channel] = "Online" ), [Net Sales] )
+		formatString: 0.0%
+		displayFolder: Sales
+		lineageTag: f812cd3b-d789-43fb-ac31-538be2845984
+
+	/// Net sales minus cost of goods sold.
+	measure 'Gross Margin' = [Net Sales] - SUM ( Sales[Cost] )
+		formatString: #,0
+		displayFolder: Margin
+		lineageTag: 10ae0c7b-403a-461b-aa6e-8bf67a0d162b
+
+	/// Gross margin as a share of net sales.
+	measure 'Gross Margin %' = DIVIDE ( [Gross Margin], [Net Sales] )
+		formatString: 0.0%
+		displayFolder: Margin
+		lineageTag: a4c67aab-6bd2-4d79-b332-14913ff0c715
+
+	/// Net sales for the same period last year.
+	measure 'Net Sales PY' = CALCULATE ( [Net Sales], SAMEPERIODLASTYEAR ( 'Date'[Date] ) )
+		formatString: #,0
+		displayFolder: Time intelligence
+		lineageTag: 0046ad4d-bcf3-4c01-aa47-cf4acf1925ca
+
+	/// Change in net sales against the same period last year.
+	measure 'Net Sales YoY %' = IF ( NOT ISBLANK ( [Net Sales PY] ), DIVIDE ( [Net Sales] - [Net Sales PY], [Net Sales PY] ) )
+		formatString: +0.0%;-0.0%;0.0%
+		displayFolder: Time intelligence
+		lineageTag: a5626118-d88e-4013-9ef0-3908892549a3
+
+	/// Year-to-date net sales.
+	measure 'Net Sales YTD' = TOTALYTD ( [Net Sales], 'Date'[Date] )
+		formatString: #,0
+		displayFolder: Time intelligence
+		lineageTag: 79d3b564-5bcb-4709-8594-49580b71fe67
+
+	/// Monthly store sales target. Target has no relationships; TREATAS applies the store and month filters.
+	measure Target =
+			CALCULATE (
+				SUM ( 'Sales Target'[TargetAmount] ),
+				TREATAS ( VALUES ( Store[StoreKey] ), 'Sales Target'[StoreKey] ),
+				TREATAS ( VALUES ( 'Date'[YearMonth] ), 'Sales Target'[YearMonth] )
+			)
+		formatString: #,0
+		displayFolder: Target
+		lineageTag: 460cb47e-2fd6-4466-b698-5510cd48a815
+
+	/// Net sales minus target.
+	measure 'Var to Target' = IF ( NOT ISBLANK ( [Target] ), [Net Sales] - [Target] )
+		formatString: +#,0;-#,0;0
+		displayFolder: Target
+		lineageTag: 70c84a79-50ed-40df-b236-9715814fd8dc
+
+	/// Net sales against target, as a percentage of target.
+	measure 'Var to Target %' = DIVIDE ( [Var to Target], [Target] )
+		formatString: +0.0%;-0.0%;0.0%
+		displayFolder: Target
+		lineageTag: 87d9465a-a712-47de-8b83-9feb1b6c4844
+
+	column SalesLineID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 6174171e-c297-4021-b2c5-d8830bdb2ba9
+		summarizeBy: none
+		sourceColumn: SalesLineID
+
+		annotation SummarizationSetBy = User
+
+	column OrderDate
+		dataType: dateTime
+		isHidden
+		formatString: d mmm yyyy
+		lineageTag: 59e75b44-9d01-4db6-822b-9ea806fe0bd6
+		summarizeBy: none
+		sourceColumn: OrderDate
+
+		annotation SummarizationSetBy = User
+
+	column StoreKey
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 27cf3002-bd9d-47cb-9929-2823e49c328a
+		summarizeBy: none
+		sourceColumn: StoreKey
+
+		annotation SummarizationSetBy = User
+
+	column ProductKey
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 4f30ed6e-4971-4ff9-bb05-267916abfe5f
+		summarizeBy: none
+		sourceColumn: ProductKey
+
+		annotation SummarizationSetBy = User
+
+	column Channel
+		dataType: string
+		isHidden
+		lineageTag: 7758f46e-37b7-45ef-a152-90da4bc61cff
+		summarizeBy: none
+		sourceColumn: Channel
+
+		annotation SummarizationSetBy = User
+
+	column Quantity
+		dataType: int64
+		isHidden
+		formatString: #,0
+		lineageTag: 3ab404d1-bc64-4b40-bd87-3fec7e5e87ac
+		summarizeBy: sum
+		sourceColumn: Quantity
+
+		annotation SummarizationSetBy = User
+
+	column UnitPrice
+		dataType: decimal
+		isHidden
+		formatString: #,0.00
+		lineageTag: f72ac930-65c8-4e08-a82a-0cb00845a9c2
+		summarizeBy: none
+		sourceColumn: UnitPrice
+
+		annotation SummarizationSetBy = User
+
+	column GrossAmount
+		dataType: decimal
+		isHidden
+		formatString: #,0
+		lineageTag: d55cc884-ff29-4ff2-a7de-c5be04daf0e7
+		summarizeBy: sum
+		sourceColumn: GrossAmount
+
+		annotation SummarizationSetBy = User
+
+	column DiscountAmount
+		dataType: decimal
+		isHidden
+		formatString: #,0
+		lineageTag: 719fc9d9-696d-43d8-9efa-1a6fb3278745
+		summarizeBy: sum
+		sourceColumn: DiscountAmount
+
+		annotation SummarizationSetBy = User
+
+	column NetAmount
+		dataType: decimal
+		isHidden
+		formatString: #,0
+		lineageTag: ed45672d-6bc4-4fa3-b9be-45d1f9a8003d
+		summarizeBy: sum
+		sourceColumn: NetAmount
+
+		annotation SummarizationSetBy = User
+
+	column Cost
+		dataType: decimal
+		isHidden
+		formatString: #,0
+		lineageTag: 125d4ba5-00aa-4264-944a-0fe2a7ac9bdf
+		summarizeBy: sum
+		sourceColumn: Cost
+
+		annotation SummarizationSetBy = User
+
+	partition Sales = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(Web.Contents(BaseUrl, [RelativePath = "sales.csv"]), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Typed = Table.TransformColumnTypes(Promoted, {{"SalesLineID", Int64.Type}, {"OrderDate", type date}, {"StoreKey", Int64.Type}, {"ProductKey", Int64.Type}, {"Channel", type text}, {"Quantity", Int64.Type}, {"UnitPrice", Currency.Type}, {"GrossAmount", Currency.Type}, {"DiscountAmount", Currency.Type}, {"NetAmount", Currency.Type}, {"Cost", Currency.Type}}, "en-US")
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table

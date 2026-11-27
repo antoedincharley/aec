@@ -1,10 +1,24 @@
 # Anto Edin Charley
 
-Data and BI Engineer working on Microsoft Fabric, Power BI and SQL Server in retail analytics.
+**Data Professional** · Microsoft Fabric · Power BI · SQL Server · 18+ years
 
-I design and run the data platform end to end: ingestion from ERP and on-premises SQL Server, warehouse ETL in Fabric, semantic models in Power BI, and the SQL Server estate behind them.
+I turn business data into decisions. I design and build the full data platform myself (ingestion, warehouse, models and reports) and translate between business teams and technology so the numbers answer the right questions.
 
-## Experience
+18+ years across retail and enterprise software, including healthcare, logistics and hospitality systems, in India, Africa and the UAE.
+
+## What I can do
+
+| Capability | In practice |
+|---|---|
+| **Data architecture** | Design lakehouse and warehouse platforms on Microsoft Fabric and Azure (ADLS, Data Factory, Synapse) |
+| **Data engineering** | Build incremental, re-runnable ETL from ERP and SQL Server sources, with change detection and monitoring |
+| **Business intelligence** | Model data for analysis and build Power BI reports leaders use to run the business |
+| **Database administration** | Keep SQL Server estates healthy: SSIS, SQL Agent, Change Tracking, performance and storage |
+| **Data analysis** | Investigate the numbers, find the cause behind a trend and explain it in business terms |
+| **Platform migration** | Move reporting off legacy ERP to a central analytics platform without disrupting the business |
+| **Delivery** | Take a project from requirement to production, and support the people who use it |
+
+## Technical depth
 
 **Microsoft Fabric**
 Warehouse and Lakehouse ETL, Dataflow Gen2, pipelines, PySpark notebooks, capacity operations and incident recovery.

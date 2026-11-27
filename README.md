@@ -1,55 +1,45 @@
-# Hi, I'm Anto Edin Charley 👋
+# Anto Edin Charley
 
-**Data & BI Engineer** · Microsoft Fabric · Power BI · SQL Server
+Data and BI Engineer working on Microsoft Fabric, Power BI and SQL Server in retail analytics.
 
-I build data platforms for retail analytics — from ingestion and warehouse ETL to semantic models and the reports people use every day.
+I design and run the data platform end to end: ingestion from ERP and on-premises SQL Server, warehouse ETL in Fabric, semantic models in Power BI, and the SQL Server estate behind them.
 
----
+## Experience
 
-### 🔧 What I do
+**Microsoft Fabric**
+Warehouse and Lakehouse ETL, Dataflow Gen2, pipelines, PySpark notebooks, capacity operations and incident recovery.
 
-| Area | Work |
+**Power BI**
+Semantic model design, composite models (Direct Lake with on-premises DirectQuery), DAX, row-level security, gateway configuration.
+
+**SQL Server**
+Administration of production instances: SSIS and SSISDB, SQL Agent, Change Tracking, columnstore indexes, Database Mail.
+
+**Data warehousing and migration**
+Incremental loading with hash-based change detection and watermarks. Moving reporting off SAP to a central analytics platform with Dynamics NAV / Business Central sources.
+
+## Case studies
+
+| | |
 |---|---|
-| **Microsoft Fabric** | Warehouse & Lakehouse ETL, Dataflow Gen2, pipelines, PySpark notebooks, capacity operations |
-| **Power BI** | Semantic model design, composite models (Direct Lake + DirectQuery), DAX, row-level security |
-| **SQL Server** | Administration, SSIS / SSISDB, SQL Agent, Change Tracking, columnstore indexes, Database Mail |
-| **Data Warehousing** | Incremental loads, hash-based change detection, watermarking, ERP-to-analytics migrations |
+| [Incremental ETL framework for Fabric Warehouse](case-studies/01-fabric-etl-framework.md) | Fabric, T-SQL |
+| [Composite semantic model: Direct Lake + on-prem DirectQuery](case-studies/02-composite-semantic-model.md) | Power BI, DAX, RLS |
+| [Recovering from a Fabric capacity failure](case-studies/03-fabric-capacity-incident.md) | Operations |
+| [Diagnosing Fabric Warehouse storage bloat](case-studies/04-fabric-storage-bloat.md) | Fabric, PySpark, PowerShell |
+| [Release notes app on Fabric](case-studies/05-release-notes-app.md) | Dataflow Gen2, Power BI |
+| [Fixing SSISDB log growth](case-studies/06-ssisdb-log-cleanup.md) | SQL Server |
+| [Moving reporting off SAP to an analytics hub](case-studies/07-sap-decommissioning.md) | Migration |
 
-### 📖 Case studies
+## Code samples
 
-Real problems and how I solved them:
+- [fabric-warehouse-etl-patterns](fabric-warehouse-etl-patterns) – load procedure template with Full, Recreate and Upsert modes, SHA2-256 row hashing and watermarking
+- [powerbi-dax-patterns](powerbi-dax-patterns) – virtual relationships, role-playing dates, dynamic RLS, conditional formatting, time intelligence
+- [sql-server-dba-toolkit](sql-server-dba-toolkit) – health checks for SSISDB, SQL Agent, Database Mail, Change Tracking and columnstore
 
-- [Incremental ETL framework for Fabric Warehouse](case-studies/01-fabric-etl-framework.md)
-- [Composite semantic model: Direct Lake + on-prem DirectQuery](case-studies/02-composite-semantic-model.md)
-- [Recovering from a Fabric capacity failure](case-studies/03-fabric-capacity-incident.md)
-- [Diagnosing Fabric Warehouse storage bloat](case-studies/04-fabric-storage-bloat.md)
-- [Release notes app on Fabric](case-studies/05-release-notes-app.md)
-- [Fixing SSISDB log growth](case-studies/06-ssisdb-log-cleanup.md)
-- [Moving reporting off SAP to an analytics hub](case-studies/07-sap-decommissioning.md)
+## Tools
 
-### 📂 Code samples
+Microsoft Fabric, Power BI, SQL Server, T-SQL, DAX, Power Query, PySpark, PowerShell, SSIS, Azure Logic Apps
 
-- **[fabric-warehouse-etl-patterns](https://github.com/antoedincharley/aec/tree/main/fabric-warehouse-etl-patterns)** — Stored procedure templates for Fabric Warehouse: Full / Recreate / Upsert modes, SHA2-256 row hashing, watermarking
-- **[powerbi-dax-patterns](https://github.com/antoedincharley/aec/tree/main/powerbi-dax-patterns)** — Practical DAX: virtual relationships, role-playing dates, dynamic RLS, conditional formatting
-- **[sql-server-dba-toolkit](https://github.com/antoedincharley/aec/tree/main/sql-server-dba-toolkit)** — Health-check scripts for SSISDB, Change Tracking, SQL Agent, Database Mail and columnstore
+## Contact
 
-### 🧰 Tech stack
-
-![Microsoft Fabric](https://img.shields.io/badge/Microsoft%20Fabric-0078D4?style=for-the-badge&logo=microsoft&logoColor=white)
-![Power BI](https://img.shields.io/badge/Power%20BI-F2C811?style=for-the-badge&logo=powerbi&logoColor=black)
-![SQL Server](https://img.shields.io/badge/SQL%20Server-CC2927?style=for-the-badge&logo=microsoftsqlserver&logoColor=white)
-![T-SQL](https://img.shields.io/badge/T--SQL-336791?style=for-the-badge)
-![DAX](https://img.shields.io/badge/DAX-F2C811?style=for-the-badge)
-![PySpark](https://img.shields.io/badge/PySpark-E25A1C?style=for-the-badge&logo=apachespark&logoColor=white)
-![PowerShell](https://img.shields.io/badge/PowerShell-5391FE?style=for-the-badge&logo=powershell&logoColor=white)
-![Azure](https://img.shields.io/badge/Azure-0078D4?style=for-the-badge&logo=microsoftazure&logoColor=white)
-
-### 📌 Principles
-
-- **Idempotent ETL** — every load can be re-run safely
-- **Change detection over full reloads** — hash and watermark, move only what changed
-- **Models built for the question** — right grain, right storage mode, simple DAX
-
-### 📫 Connect
-
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/YOUR-LINKEDIN/)
+[LinkedIn](https://www.linkedin.com/in/YOUR-LINKEDIN/)

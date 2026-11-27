@@ -1,14 +1,14 @@
 # Power BI DAX Patterns
 
-Practical DAX patterns for Power BI semantic models.
+DAX patterns I use in Power BI semantic models.
 
 ## Contents
 
 | File | Pattern |
 |---|---|
-| `dax/01_virtual_relationships.dax` | `TREATAS` — filter across tables with no physical relationship |
-| `dax/02_role_playing_dates.dax` | `USERELATIONSHIP` — order date vs ship date on one date table |
-| `dax/03_crossfilter.dax` | `CROSSFILTER` — change filter direction inside one measure |
+| `dax/01_virtual_relationships.dax` | `TREATAS`: filter across tables with no physical relationship |
+| `dax/02_role_playing_dates.dax` | `USERELATIONSHIP`: order date vs ship date on one date table |
+| `dax/03_crossfilter.dax` | `CROSSFILTER`: change filter direction inside one measure |
 | `dax/04_dynamic_rls.dax` | Dynamic row-level security with a user-to-store mapping table |
 | `dax/05_conditional_formatting.dax` | Measures that drive colours and icons in matrix visuals |
 | `dax/06_time_intelligence.dax` | YTD, prior year and YoY % with a proper date table |
@@ -34,4 +34,4 @@ Dim_Date is marked as a date table.
 
 ## License
 
-MIT — see [LICENSE](../LICENSE)
+MIT, see [LICENSE](../LICENSE)

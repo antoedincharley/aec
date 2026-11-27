@@ -21,4 +21,4 @@ Read-only health-check and maintenance scripts for SQL Server 2016+.
 
 ## License
 
-MIT — see [LICENSE](../LICENSE)
+MIT, see [LICENSE](../LICENSE)

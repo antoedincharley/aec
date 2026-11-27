@@ -6,7 +6,7 @@ Reusable T-SQL patterns for loading fact and dimension tables in **Microsoft Fab
 
 | Pattern | Why |
 |---|---|
-| **Three load modes** — `FULL`, `RECREATE`, `UPSERT` | One procedure covers initial loads, schema rebuilds and daily increments |
+| **Three load modes:** `FULL`, `RECREATE`, `UPSERT` | One procedure covers initial loads, schema rebuilds and daily increments |
 | **SHA2-256 row hash** | Detects changed rows without comparing every column |
 | **Watermark table** | Incremental loads pick up only rows changed since the last run |
 | **DELETE + INSERT instead of MERGE** | Predictable behaviour and performance in Fabric Warehouse |
@@ -45,4 +45,4 @@ sql/
 
 ## License
 
-MIT — see [LICENSE](../LICENSE)
+MIT, see [LICENSE](../LICENSE)

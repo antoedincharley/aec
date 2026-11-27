@@ -42,4 +42,4 @@ Microsoft Fabric, Power BI, SQL Server, T-SQL, DAX, Power Query, PySpark, PowerS
 
 ## Contact
 
-[LinkedIn](https://www.linkedin.com/in/YOUR-LINKEDIN/)
+[LinkedIn](https://www.linkedin.com/in/antoedincharley/)
